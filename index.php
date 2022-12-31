@@ -19,7 +19,8 @@ $errors =
 ];
 
 $message = '';
-if ($_SERVER['REQUEST-METHOD'] == 'POST') {
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user['name'] = $_POST['name'];
     $user['age'] = $_POST['age'];
     $user['terms'] = (isset($_POST['terms']) and $_POST['terms'] == true) ? true : false;
@@ -35,3 +36,7 @@ if ($_SERVER['REQUEST-METHOD'] == 'POST') {
         $message = 'Your data was valid';
     }
 }
+
+?>
+<p>hello</p>
+<?=$message?>
