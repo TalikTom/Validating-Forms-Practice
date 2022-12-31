@@ -38,5 +38,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
-<p>hello</p>
+
 <?=$message?>
+
+<form action="/" method="POST">
+
+<input type="text" name="name"><br>
+<input type="text" name="age"><br>
+<input type="checkbox" name="terms" value="true"><br>
+<span class="error"></span><br>
+<input type="submit" value="Save"><br>
+
+
+</form>
