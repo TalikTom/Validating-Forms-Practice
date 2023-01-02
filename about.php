@@ -25,4 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $message = 'Thank you';
     }
+
+    $user['name'] = filter_var($user['name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $user['age'] = filter_var($user['age'], FILTER_SANITIZE_NUMBER_INT);
 }
