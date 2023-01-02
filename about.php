@@ -2,7 +2,7 @@
 
 $user = ['name' => '', 'age' => '', 'terms' => '',];
 $errors = ['name' => '', 'age' => '', 'terms' => '',];
-$user = '';
+$message = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $validation_filters['name']['filter'] = FILTER_VALIDATE_REGEXP;
@@ -23,9 +23,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($invalid) {
         $message = 'Please correct the following errors';
     } else {
-        $message = 'Thank you';
+        $message = 'Thank you, all your data is valid';
     }
 
     $user['name'] = filter_var($user['name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $user['age'] = filter_var($user['age'], FILTER_SANITIZE_NUMBER_INT);
 }
+?>
+
+<?= $message ?>
+
+
+<form action="about.php" method="POST">
+    Name: <input type="text" name="name" value="<?= $user['name']; ?>">
+    <span><?= $errors['name'] ;?></span> <br>
+    Age: <input type="text" name="age" value="<?= $user['age']; ?>">
+    <span><?= $errors['age'] ;?></span> <br>
+    <input type="submit" value="Save">
+    <input type="checkbox" name="terms" value="true" <?= $user['terms'] ? 'checked' : '' ?>> I agree to the terms and
+    conditions
+    <span><?= $errors['terms'] ;?></span> <br>
+</form>
