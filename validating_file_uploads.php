@@ -1,5 +1,25 @@
 <?php
 
+$dsn = "mysql:host=localhost;port=3306;dbname=edunovapp26;user=root;charset=utf8mb4";
+
+$pdo = new PDO($dsn);
+
+$statement = $pdo->prepare("select * from osoba");
+
+$statement->execute();
+
+$osobe = $statement->fetchAll(PDO::FETCH_ASSOC);
+class Person
+{
+    public string $name;
+    public int $age;
+
+    function __construct(string $name, int $age) {
+        $this->name = $name;
+        $this->age = $age;
+    }
+}
+
 $moved = false;
 $message = '';
 $error = '';
@@ -49,7 +69,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+$man = new Person('marko', 23);
 ?>
+
+<?= var_dump($man); ?>
+<?= var_dump($man->age); ?>
 
 <?= $message ?>
 <form action="validating_file_uploads.php" method="post" enctype="multipart/form-data">
@@ -57,3 +81,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="file" name="image" accept="image/*"><br>
     <input type="submit" value="Upload">
 </form>
+
+
+<?php
+foreach ($osobe as $osoba) {
+    echo "<li>" . $osoba['ime'] . "</li>";
+}
+
+?>
