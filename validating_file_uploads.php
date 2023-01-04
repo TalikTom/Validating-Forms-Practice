@@ -22,4 +22,12 @@ function create_filename($filename, $upload_path)
     return $filename;
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $error = ($_FILES['image']['size'] === 1) ? 'too big ' : '';
+    
+    if ($_FILES['image']['error'] == 0) {
+        $error .= ($_FILES['image']['size'] <= $max_size) ? '' : 'too big ';
+    }
+}
+
 ?>
