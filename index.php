@@ -41,14 +41,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <?=$message?>
 
+
+
 <form action="/" method="POST">
 
-Name:<input type="text" name="name" value="<?=htmlspecialchars($user['name'])?>"><span class="error"><?=$errors['name']?></span><br>
-Age:<input type="text" name="age" value="<?=htmlspecialchars($user['age'])?>"><span class="error"><?=$errors['age']?></span><br>
-<input type="checkbox" name="terms" value="true" <?=$user['terms'] ? 'checked' : ''?>><br>
-I agree to the terms and conditions
-<span class="error"></span><br>
-<input type="submit" value="Save"><br>
+    Name:<input type="text" name="name" value="<?=htmlspecialchars($user['name'])?>"><span
+        class="error"><?=$errors['name']?></span><br>
+    Age:<input type="text" name="age" value="<?=htmlspecialchars($user['age'])?>"><span
+        class="error"><?=$errors['age']?></span><br>
+    <input type="checkbox" name="terms" value="true" <?=$user['terms'] ? 'checked' : ''?>><br>
+    I agree to the terms and conditions
+    <span class="error"></span><br>
+    <input type="submit" value="Save"><br>
 
 
 </form>
