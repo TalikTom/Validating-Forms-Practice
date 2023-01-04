@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $type = mime_content_type($_FILES['image']['tmp_name']);
         $error .= in_array($type, $allowed_types) ? '' : 'wrong type';
 
-        $ext = strtolower(pathinfo($_FILES['image']['tmp_name'], PATHINFO_EXTENSION));
+        $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
         $error .= in_array($ext, $allowed_exts) ? '' : 'wrong file extension';
 
         if(!$error) {
