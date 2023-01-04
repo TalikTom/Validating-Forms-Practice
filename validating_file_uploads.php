@@ -85,7 +85,7 @@ $man = new Person('marko', 23);
 
 <?php
 foreach ($osobe as $osoba) {
-    echo "<li>" . $osoba['ime'] . "</li>";
+    echo "<li>" . $osoba['ime'] . ' ' . $osoba['prezime'] . "</li>";
 }
 
 ?>
