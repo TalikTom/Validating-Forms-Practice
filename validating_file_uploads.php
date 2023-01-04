@@ -12,7 +12,7 @@ function create_filename($filename, $upload_path)
 {
     $basename = pathinfo($filename, PATHINFO_FILENAME);
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
-    $basename = preg_replace('/[^A-z0-9]', '-', $basename);
+    $basename = preg_replace('/[^A-z0-9]/', '-', $basename);
     $i = 0;
     while(file_exists($upload_path . $filename)) {
         $i = $i + 1;
