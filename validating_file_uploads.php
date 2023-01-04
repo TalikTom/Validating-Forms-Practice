@@ -26,8 +26,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $error = ($_FILES['image']['size'] === 1) ? 'too big ' : '';
     
     if ($_FILES['image']['error'] == 0) {
+        
         $error .= ($_FILES['image']['size'] <= $max_size) ? '' : 'too big ';
+
+        $type = mime_content_type($_FILES['image']['tmp_name']);
+        $error .= in_array($type, $allowed_types) ? '' : 'wrong type'; 
     }
 }
 
 ?>
+
+<?= $message ?>
+<form action="validating_file_uploads.php" method="post" enctype="multipart/form-data">
+    <label for="image">Upload file:</label>
+    <input type="file" name="image" accept="image/*"><br>
+    <input type="submit" value="Upload">
+</form>
