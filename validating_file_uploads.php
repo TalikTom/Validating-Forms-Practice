@@ -34,6 +34,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $ext = strtolower(pathinfo($_FILES['image']['tmp_name'], PATHINFO_EXTENSION));
         $error .= in_array($ext, $allowed_exts) ? '' : 'wrong file extension';
+
+        if(!$error) {
+            $filename = create_filename($_FILES['image']['name'], $upload_path);
+            $destination = $upload_path . $filename;
+            $moved = move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+        }
+    }
+
+    if($moved === true) {
+        $message = 'Uploaded:<br><img src="' . $destination . '">'; 
+    } else {
+        $message = '<b>Could not upload file:</b> ' . $error;
     }
 }
 
