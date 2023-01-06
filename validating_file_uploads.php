@@ -1,14 +1,5 @@
 <?php
 
-$dsn = "mysql:host=localhost;port=3306;dbname=edunovapp26;user=root;charset=utf8mb4";
-
-$pdo = new PDO($dsn);
-
-$statement = $pdo->prepare("select * from osoba");
-
-$statement->execute();
-
-$osobe = $statement->fetchAll(PDO::FETCH_ASSOC);
 class Person
 {
     public string $name;
@@ -19,6 +10,27 @@ class Person
         $this->age = $age;
     }
 }
+
+
+class Database {
+    public function query()
+    {
+        $dsn = "mysql:host=localhost;port=3306;dbname=edunovapp26;user=root;charset=utf8mb4";
+
+        $pdo = new PDO($dsn);
+
+        $statement = $pdo->prepare("select * from osoba");
+
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+}
+
+$db = new Database();
+
+$osobe = $db->query();
 
 $moved = false;
 $message = '';
